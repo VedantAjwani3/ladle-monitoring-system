@@ -8,5 +8,26 @@
 <h1>Ladle Monitoring Dashboard</h1>
 <p>If you can see this, website is working.</p>
 
+<button onclick="loadData()">Load Data from Sheet</button>
+
+<pre id="output"></pre>
+
+<script>
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwmbkFdX1-3kr3-LqWHII1sFhpez34mwCthhcZQRXih5qnC3NZPmbkjS96VV5is6bTX/exec";
+
+  function loadData() {
+    fetch(SCRIPT_URL)
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById("output").textContent =
+          JSON.stringify(data, null, 2);
+      })
+      .catch(err => {
+        alert("Error loading data");
+        console.error(err);
+      });
+  }
+</script>
+
 </body>
 </html>
